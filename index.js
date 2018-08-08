@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 const morgan = require('morgan');
 const errors = require('./api/middlewares/errors');
 const { DATABASE_PASSWORD, DATABASE_URI, DATABASE_USER } = require('./config');
-
+console.log(DATABASE_PASSWORD, DATABASE_URI, DATABASE_USER);
 const port = parseInt(process.env.PORT, 10) || 3000;
 const dev = process.env.NODE_ENV !== 'production';
 

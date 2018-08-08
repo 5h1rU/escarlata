@@ -1,7 +1,8 @@
 {
   "name": "escarlata",
   "version": "0.0.1",
-  "description": "",
+  "description": "Tickets API",
+  "repository": "https://github.com/5h1rU/escarlata",
   "main": "index.js",
   "now": {
     "alias": "escarlata"
@@ -11,7 +12,6 @@
     "start": "node index.js",
     "pretty": "prettier --write --tab-width 2 \"api/**/*.js\"",
     "test": "echo \"Error: no test specified\" && exit 0",
-    "deploy": "now --token=$NOW_TOKEN --public $(now ./out --no-clipboard --token=$NOW_TOKEN --public)",
     "commit": "npm run pretty && git-cz"
   },
   "engines": {
