@@ -6,7 +6,14 @@
   "now": {
     "alias": "escarlata"
   },
+  "files": [
+    "api",
+    "index.js",
+    "config.js",
+    "package.json"
+  ],
   "scripts": {
+    "now-build": "echo 'Built on Travis CI'",
     "dev": "nodemon --inspect index.js localhost 8080",
     "start": "node index.js",
     "pretty": "prettier --write --tab-width 2 \"api/**/*.js\"",
