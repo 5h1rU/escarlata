@@ -1,0 +1,56 @@
+{
+  "name": "escarlata",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "now": {
+    "alias": "escarlata"
+  },
+  "scripts": {
+    "dev": "nodemon --inspect index.js localhost 8080",
+    "start": "node index.js",
+    "pretty": "prettier --write --tab-width 2 \"api/**/*.js\"",
+    "test": "echo \"Error: no test specified\" && exit 0",
+    "deploy": "now --token=$NOW_TOKEN --public $(now ./out --no-clipboard --token=$NOW_TOKEN --public)",
+    "commit": "npm run pretty && git-cz"
+  },
+  "engines": {
+    "node": "^10.0.0"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^2.0.1",
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3",
+    "helmet": "^3.13.0",
+    "jsonwebtoken": "^8.3.0",
+    "mongoose": "^5.2.6",
+    "mongoose-unique-validator": "^2.0.1",
+    "morgan": "^1.9.0",
+    "passport": "^0.4.0",
+    "passport-jwt": "^4.0.0",
+    "passport-local": "^1.0.0"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "chai-as-promised": "^7.1.1",
+    "chai-http": "^4.0.0",
+    "cz-conventional-changelog": "^2.1.0",
+    "eslint": "^5.2.0",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-plugin-import": "^2.13.0",
+    "eslint-plugin-prettier": "^2.6.2",
+    "mocha": "^5.2.0",
+    "nodemon": "^1.18.3",
+    "prettier": "1.14.0",
+    "sinon": "^6.1.4",
+    "sinon-mongoose": "^2.2.1"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}
