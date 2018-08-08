@@ -4,10 +4,16 @@ const helmet = require('helmet');
 const mongoose = require('mongoose');
 const morgan = require('morgan');
 const errors = require('./api/middlewares/errors');
-const { DATABASE_PASSWORD, DATABASE_URI, DATABASE_USER } = require('./config');
+const {
+  DATABASE_PASSWORD,
+  DATABASE_URI,
+  DATABASE_USER,
+  NODE_ENV,
+  PORT
+} = require('./config');
 
-const port = parseInt(process.env.PORT, 10) || 3000;
-const dev = process.env.NODE_ENV !== 'production';
+const port = parseInt(PORT, 10) || 3000;
+const dev = NODE_ENV !== 'production';
 
 mongoose
   .connect(
