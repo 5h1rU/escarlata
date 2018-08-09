@@ -12,7 +12,9 @@ const UserService = {
     return user.save();
   },
   read: id => UserModel.findById(id),
-  update: id => UserModel.findById(id, { new: true }),
+  update: (id, payload) => {
+    return UserModel.findByIdAndUpdate(id, payload, { new: true });
+  },
   delete: id => UserModel.findByIdAndDelete(id)
 };
 
