@@ -30,7 +30,7 @@ app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 require('./api/routes')(app);
-Object.keys(errors).forEach(error => app.use(errors[error]));
+app.use(errors);
 
 app.listen(port, () => console.log(`listening on port ${port}`));
 

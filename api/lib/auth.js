@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken');
 const { SECRET_KEY_TOKEN } = require('../../config');
+const { errorBuilder } = require('./errors');
 
 const JWT = {
   verify: token => {
@@ -17,8 +18,11 @@ const JWT = {
         }
         */
         if (error || !decodedToken) {
-          const error = new Error('Bad Token');
-          error.name = 'UnauthorizedError';
+          const error = errorBuilder({
+            name: 'UnauthorizedError',
+            message: 'Bad Token'
+          });
+
           return reject(error);
         }
 

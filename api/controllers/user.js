@@ -1,6 +1,7 @@
 const UserService = require('../services/user');
 const JWT = require('../lib/auth');
 const asyncUtil = require('../lib/async');
+const { errorBuilder } = require('../lib/errors');
 
 const User = {
   create: asyncUtil(async (req, res, next) => {
@@ -10,11 +11,26 @@ const User = {
   read: asyncUtil(async (req, res, next) => {
     const user = await UserService.read(req.params.id);
     if (!user) {
-      res.status(404).json({ error: 'user not found' });
+      throw errorBuilder({ name: 'NotFoundError', message: 'User not found' });
     }
     res.status(200).json({ success: user });
   }),
   update: asyncUtil(async (req, res, next) => {
+    /**
+     * TODO: this piece of code is used in other part of the app
+     * ../middlewares/auth.js
+     * I need change and avoid DRY, abstract in a new method and
+     * inovoke here and there.
+     */
+    const token = req.headers.authorization.split(' ')[1];
+    const id = await JWT.verify(token);
+
+    if (id !== req.params.id) {
+      throw errorBuilder({
+        name: 'UnauthorizedError',
+        message: 'Out of scope'
+      });
+    }
     let payload = {};
     if (req.body.firstName) {
       payload.firstName = req.body.firstName;

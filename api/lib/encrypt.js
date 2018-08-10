@@ -1,4 +1,5 @@
 const bcrypt = require('bcrypt');
+const { errorBuilder } = require('./errors');
 
 const Encrypt = {
   hash: async (rawString, saltNumber = 10) => {
@@ -11,9 +12,10 @@ const Encrypt = {
   compare: async function(sentString, storedString) {
     const compare = await bcrypt.compare(sentString, storedString);
     if (!compare) {
-      const error = new Error('String is not coinciding');
-      error.name = 'ValidationError';
-      throw error;
+      throw errorBuilder({
+        name: 'ValidationError',
+        message: 'String is not coinciding'
+      });
     }
     return compare;
   }
