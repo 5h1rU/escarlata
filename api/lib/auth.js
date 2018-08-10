@@ -20,13 +20,13 @@ const JWT = {
         if (error || !decodedToken) {
           const error = errorBuilder({
             name: 'UnauthorizedError',
-            message: 'Bad Token'
+            message: 'Invalid Token'
           });
 
           return reject(error);
         }
 
-        resolve(decodedToken.sub);
+        resolve(decodedToken);
       });
     });
   },

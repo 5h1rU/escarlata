@@ -1,5 +1,5 @@
 const auth = require('../controllers/auth');
-const user = require('../controllers/user');
+const user = require('../controllers/account');
 const verifyToken = require('../middlewares/auth');
 
 const router = app => {
@@ -7,9 +7,10 @@ const router = app => {
 
   app.all('*', verifyToken);
   app.post('/users', user.create);
-  app.get('/users/:id', user.read);
-  app.patch('/users/:id', user.update);
-  app.delete('/users/:id', user.delete);
+
+  app.get('/account', user.read);
+  app.patch('/account', user.update);
+  app.delete('/account', user.delete);
 };
 
 module.exports = router;
