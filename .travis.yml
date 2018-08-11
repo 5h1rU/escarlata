@@ -8,13 +8,13 @@ script: npm test
 before_deploy: npm install now --no-save
 deploy:
   - provider: script
-    script: now -e DATABASE_USER=$DATABASE_USER -e DATABASE_PASSWORD=$DATABASE_PASSWORD -e DATABASE_URI=$DATABASE_URI -e SECRET_KEY_TOKEN=$SECRET_KEY_TOKEN -e NODE_ENV="development" --public --token $NOW_TOKEN
+    script: now -e DATABASE_USER=$DATABASE_USER -e DATABASE_PASSWORD=$DATABASE_PASSWORD -e DATABASE_URI=$DATABASE_URI -e SECRET_KEY_TOKEN=$SECRET_KEY_TOKEN -e NODE_ENV="development" -e SENDGRID_API_KEY=$SENDGRID_API_KEY --public --token $NOW_TOKEN
     skip_cleanup: true
     on:
       all_branches: true
       master: false
   - provider: script
-    script: now -e DATABASE_USER=$DATABASE_USER -e DATABASE_PASSWORD=$DATABASE_PASSWORD -e DATABASE_URI=$DATABASE_URI -e SECRET_KEY_TOKEN=$SECRET_KEY_TOKEN -e NODE_ENV="production" --public --token $NOW_TOKEN && now alias --token $NOW_TOKEN
+    script: now -e DATABASE_USER=$DATABASE_USER -e DATABASE_PASSWORD=$DATABASE_PASSWORD -e DATABASE_URI=$DATABASE_URI -e SECRET_KEY_TOKEN=$SECRET_KEY_TOKEN -e NODE_ENV="production" -e SENDGRID_API_KEY=$SENDGRID_API_KEY --public --token $NOW_TOKEN && now alias --token $NOW_TOKEN
     skip_cleanup: true
     on:
       master: true
