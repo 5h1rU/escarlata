@@ -1,16 +1,20 @@
 const auth = require('../controllers/auth');
-const user = require('../controllers/account');
+const account = require('../controllers/account');
+const confirmation = require('../controllers/confirmation');
 const verifyToken = require('../middlewares/auth');
 
 const router = app => {
   app.post('/auth', auth.login);
 
-  app.all('*', verifyToken);
-  app.post('/users', user.create);
+  app.post('/confirmation/:token', confirmation.confirm);
+  app.post('/resend', confirmation.resend);
 
-  app.get('/account', user.read);
-  app.patch('/account', user.update);
-  app.delete('/account', user.delete);
+  app.post('/users', account.create);
+  app.all('*', verifyToken);
+
+  app.get('/account', account.read);
+  app.patch('/account', account.update);
+  app.delete('/account', account.delete);
 };
 
 module.exports = router;

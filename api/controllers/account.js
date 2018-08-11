@@ -2,14 +2,16 @@ const UserService = require('../services/user');
 const JWT = require('../lib/auth');
 const asyncUtil = require('../lib/async');
 const { errorBuilder } = require('../lib/errors');
+const Mail = require('../lib/mail');
 
 const Account = {
   create: asyncUtil(async (req, res, next) => {
     const user = await UserService.create(req.body);
-    res.status(201).json({ success: true, token: JWT.create({ data: user }) });
+    const mail = await Mail.confirmation(user, req.header.host);
+    res.status(201).send({ success: true });
   }),
   read: asyncUtil(async (req, res, next) => {
-    const user = await UserService.read(req.user.id);
+    const user = await UserService.read({ _id: req.user.id });
     res.status(200).json({ success: user });
   }),
   update: asyncUtil(async (req, res, next) => {

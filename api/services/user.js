@@ -11,7 +11,7 @@ const UserService = {
 
     return user.save();
   },
-  read: id => UserModel.findById(id),
+  read: data => UserModel.findOne(data),
   update: (id, payload) => {
     return UserModel.findByIdAndUpdate(id, payload, { new: true });
   },
