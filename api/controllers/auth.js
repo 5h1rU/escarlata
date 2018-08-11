@@ -14,6 +14,12 @@ const Auth = {
     }
 
     const user = await UserModel.findOne({ email: req.body.email });
+    if (!user) {
+      throw errorBuilder({
+        name: 'UnauthorizedError',
+        message: 'Invalid Credentials'
+      });
+    }
     await user.isValidPassword(req.body.password);
     if (!user.isActive) {
       throw errorBuilder({

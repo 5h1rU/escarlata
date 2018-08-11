@@ -7,8 +7,8 @@ const Mail = require('../lib/mail');
 const Account = {
   create: asyncUtil(async (req, res, next) => {
     const user = await UserService.create(req.body);
-    const mail = await Mail.confirmation(user, req.header.host);
-    res.status(201).send({ success: true });
+    await Mail.confirmation(user, req.header.host);
+    res.status(201).json({ success: true });
   }),
   read: asyncUtil(async (req, res, next) => {
     const user = await UserService.read({ _id: req.user.id });

@@ -20,16 +20,15 @@ const Confirmation = {
         message: 'Account already verified'
       });
     }
-    const userVerified = Object.assign(user, { isActive: true });
-    await UserService.update(userVerified.id, userVerified);
+    await UserService.update(user.id, { isActive: true });
     res
       .status(200)
       .json({ success: 'The account has been verified. Please log in.' });
   }),
   resend: asyncUtil(async (req, res, next) => {
     const user = await UserService.read({ email: req.body.email });
-    const cm = await Mail.confirmation(user, req.headers.host);
-    res.status(200).send(cm);
+    await Mail.confirmation(user, req.headers.host);
+    res.status(200).json({ success: true });
   })
 };
 
