@@ -1,5 +1,5 @@
 const express = require('express');
-const UserModel = require('../models/user');
+const UserService = require('../services/user');
 const JWT = require('../lib/auth');
 const asyncUtil = require('../lib/async');
 const { errorBuilder } = require('../lib/errors');
@@ -13,7 +13,7 @@ const Auth = {
       });
     }
 
-    const user = await UserModel.findOne({ email: req.body.email });
+    const user = await UserService.read({ email: req.body.email });
     if (!user) {
       throw errorBuilder({
         name: 'UnauthorizedError',

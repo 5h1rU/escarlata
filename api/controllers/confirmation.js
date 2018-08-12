@@ -21,6 +21,7 @@ const Confirmation = {
       });
     }
     await UserService.update(user.id, { isActive: true });
+    // TODO: Return redirect URI schema for ios/android/web
     res
       .status(200)
       .json({ success: 'The account has been verified. Please log in.' });

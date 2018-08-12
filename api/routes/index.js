@@ -6,7 +6,7 @@ const verifyToken = require('../middlewares/auth');
 const router = app => {
   app.post('/auth', auth.login);
 
-  app.post('/confirmation/:token', confirmation.confirm);
+  app.get('/confirmation/:token', confirmation.confirm);
   app.post('/resend', confirmation.resend);
 
   app.post('/users', account.create);
