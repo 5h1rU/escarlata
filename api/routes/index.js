@@ -1,6 +1,7 @@
 const auth = require('../controllers/auth');
 const account = require('../controllers/account');
 const confirmation = require('../controllers/confirmation');
+const product = require('../controllers/product');
 const verifyToken = require('../middlewares/auth');
 
 const router = app => {
@@ -15,6 +16,11 @@ const router = app => {
   app.get('/account', account.read);
   app.patch('/account', account.update);
   app.delete('/account', account.delete);
+
+  app.post('/products', product.create);
+  app.get('/products/:id', product.read);
+  app.put('/products/:id', product.update);
+  app.delete('/products/:id', product.delete);
 };
 
 module.exports = router;
