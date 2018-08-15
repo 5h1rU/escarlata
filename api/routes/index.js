@@ -10,7 +10,7 @@ const router = app => {
   app.get('/confirmation/:token', confirmation.confirm);
   app.post('/resend', confirmation.resend);
 
-  app.post('/users', account.create);
+  app.post('/account', account.create);
   app.all('*', verifyToken);
 
   app.get('/account', account.read);
