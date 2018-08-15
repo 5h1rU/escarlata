@@ -1,7 +1,5 @@
 const UserService = require('../services/user');
-const JWT = require('../lib/auth');
 const asyncUtil = require('../lib/async');
-const { errorBuilder } = require('../lib/errors');
 const Mail = require('../lib/mail');
 
 const Account = {
@@ -15,7 +13,7 @@ const Account = {
     res.status(200).json({ success: true, user });
   }),
   update: asyncUtil(async (req, res, next) => {
-    let payload = {};
+    const payload = {};
     if (req.body.firstName) {
       payload.firstName = req.body.firstName;
     }

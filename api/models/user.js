@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
-const encrypt = require('../lib/encrypt');
 const uniqueValidator = require('mongoose-unique-validator');
+const encrypt = require('../lib/encrypt');
 
 const { Schema } = mongoose;
 

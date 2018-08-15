@@ -29,7 +29,6 @@ const Product = {
     res.status(200).json({ success: true, product });
   }),
   delete: asyncUtil(async (req, res, next) => {
-    console.log(req.params);
     const product = await ProductService.delete(req.params.id);
     if (!product) {
       throw errorBuilder({
