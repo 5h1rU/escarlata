@@ -2,11 +2,11 @@ const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
 
-const Inventory = new Schema(
+const InventorySchema = new Schema(
   {
     _productId: {
       type: Schema.Types.ObjectId,
-      ref: 'Ticket',
+      ref: 'Product',
       required: true
     },
     quantity: {

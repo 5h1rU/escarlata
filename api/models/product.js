@@ -2,10 +2,14 @@ const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
 
-const Ticket = new Schema(
+const ProductSchema = new Schema(
   {
     price: {
       type: Number
+    },
+    category: {
+      type: String,
+      default: 'ticket'
     },
     name: {
       type: String
@@ -17,4 +21,4 @@ const Ticket = new Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model('Ticket', TicketSchema);
+module.exports = mongoose.model('Product', ProductSchema);
