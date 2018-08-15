@@ -9,7 +9,7 @@ const Auth = {
     if (!req.body.email || !req.body.password) {
       throw errorBuilder({
         name: 'UnauthorizedError',
-        message: 'Invalid Credentials'
+        message: 'Missing parameters'
       });
     }
 
