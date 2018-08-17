@@ -1,4 +1,6 @@
 const jwt = require('jsonwebtoken');
+const getTime = require('date-fns/get_time');
+const addDays = require('date-fns/add_days');
 const { SECRET_KEY_TOKEN } = require('../../config');
 const { errorBuilder } = require('./errors');
 
@@ -6,17 +8,12 @@ const JWT = {
   verify: token => {
     return new Promise((resolve, reject) => {
       jwt.verify(token, SECRET_KEY_TOKEN, (error, decodedToken) => {
-        /**
-         * This is a block waiting for a proper Date condition
-         * Don't use yet.
-
-        if (decodedToken <= Date) {
+        if (decodedToken.exp < getTime(new Date())) {
           return reject({
             name: 'UnauthorizedError',
             message: 'Token expired'
           });
         }
-        */
         if (error || !decodedToken) {
           const error = errorBuilder({
             name: 'UnauthorizedError',
@@ -30,11 +27,19 @@ const JWT = {
       });
     });
   },
-  create: ({ maxAge = 3600, data }) => {
-    return jwt.sign({ sub: data }, SECRET_KEY_TOKEN, {
-      expiresIn: maxAge,
-      algorithm: 'HS256'
-    });
+  create: ({ data }) => {
+    const date = new Date();
+    return jwt.sign(
+      {
+        sub: data,
+        iat: getTime(date)
+      },
+      SECRET_KEY_TOKEN,
+      {
+        expiresIn: getTime(addDays(date, 14)),
+        algorithm: 'HS256'
+      }
+    );
   }
 };
 
