@@ -8,12 +8,6 @@ const JWT = {
   verify: token => {
     return new Promise((resolve, reject) => {
       jwt.verify(token, SECRET_KEY_TOKEN, (error, decodedToken) => {
-        if (decodedToken.exp < getTime(new Date())) {
-          return reject({
-            name: 'UnauthorizedError',
-            message: 'Token expired'
-          });
-        }
         if (error || !decodedToken) {
           const error = errorBuilder({
             name: 'UnauthorizedError',
@@ -21,6 +15,13 @@ const JWT = {
           });
 
           return reject(error);
+        }
+
+        if (decodedToken.exp < getTime(new Date())) {
+          return reject({
+            name: 'UnauthorizedError',
+            message: 'Token expired'
+          });
         }
 
         resolve(decodedToken);

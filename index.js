@@ -4,6 +4,7 @@ const helmet = require('helmet');
 const mongoose = require('mongoose');
 const morgan = require('morgan');
 const errors = require('./api/middlewares/errors');
+
 const {
   DATABASE_PASSWORD,
   DATABASE_URI,
@@ -20,7 +21,10 @@ mongoose
     `mongodb://${DATABASE_USER}:${DATABASE_PASSWORD}@${DATABASE_URI}`,
     { useNewUrlParser: true }
   )
-  .then(() => console.log('MongoDB Connected...'))
+  .then(() => {
+    console.log('MongoDB Connected...');
+    require('./api/lib/cart');
+  })
   .catch(err => console.log(`Error ${err}`));
 
 const app = express();
