@@ -1,10 +1,11 @@
 const mongoose = require('mongoose');
+const mongoosePaginate = require('mongoose-paginate');
 
 const { Schema } = mongoose;
 
 const InventorySchema = new Schema(
   {
-    _productId: {
+    product: {
       type: Schema.Types.ObjectId,
       ref: 'Product',
       required: true
@@ -14,15 +15,20 @@ const InventorySchema = new Schema(
     },
     reservations: [
       {
-        _cartId: {
+        _id: {
           type: Schema.Types.ObjectId,
-          ref: 'Cart',
+          ref: 'User',
           required: true
+        },
+        quantity: {
+          type: Number
         }
       }
     ]
   },
   { timestamps: true }
 );
+
+InventorySchema.plugin(mongoosePaginate);
 
 module.exports = mongoose.model('Inventory', InventorySchema);

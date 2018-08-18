@@ -25,7 +25,7 @@ const Account = {
   }),
   delete: asyncUtil(async (req, res, next) => {
     await UserService.delete(req.user.id);
-    res.status(204).json({ success: true });
+    res.status(204).json();
   })
 };
 
