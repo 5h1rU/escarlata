@@ -14,7 +14,7 @@ const Event = {
     res.status(201).json({ success: true, event });
   }),
   read: asyncUtil(async (req, res, next) => {
-    const event = await EventService.read({});
+    const event = await EventService.read({ _id: req.params.id });
     if (!event) {
       throw errorBuilder({
         name: 'NotFoundError',

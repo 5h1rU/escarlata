@@ -15,7 +15,7 @@ const router = app => {
   app.post('/resend', confirmation.resend);
 
   app.post('/account', account.create);
-  app.all('*', verifyToken);
+  // app.all('*', verifyToken);
 
   app.get('/account', account.read);
   app.patch('/account', account.update);

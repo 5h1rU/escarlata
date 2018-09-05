@@ -81,7 +81,16 @@ const Cart = {
 
     res.status(200).json({ success: true, cart });
   }),
-  delete: asyncUtil(async (req, res, next) => {})
+  delete: asyncUtil(async (req, res, next) => {
+    const cart = await CartService.delete({ user: req.user.id });
+    if (!cart) {
+      throw errorBuilder({
+        name: 'NotFoundError',
+        message: 'Cart not found'
+      });
+    }
+    res.status(204).json();
+  })
 };
 
 module.exports = Cart;
