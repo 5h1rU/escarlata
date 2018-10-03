@@ -47,7 +47,7 @@
     "mocha": "5.2.0",
     "nodemon": "1.18.3",
     "prettier": "1.14.2",
-    "sinon": "6.1.5",
+    "sinon": "6.3.5",
     "sinon-mongoose": "2.2.1"
   },
   "config": {
