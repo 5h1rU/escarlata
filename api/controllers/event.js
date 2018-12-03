@@ -14,7 +14,7 @@ const Event = {
     res.status(201).json({ success: true, event });
   }),
   read: asyncUtil(async (req, res, next) => {
-    const event = await EventService.read({});
+    const event = await EventService.read({ _id: req.params.id });
     if (!event) {
       throw errorBuilder({
         name: 'NotFoundError',
@@ -24,8 +24,8 @@ const Event = {
     res.status(200).json({ success: true, event });
   }),
   readAll: asyncUtil(async (req, res, next) => {
-    const events = await EventService.readAll({ page: 1, limit: 10 });
-    res.status(200).json({ success: true, events });
+    const event = await EventService.readAll({ page: 1, limit: 10 });
+    res.status(200).json({ success: true, event });
   }),
   update: asyncUtil(async (req, res, next) => {
     const payload = req.body;

@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const helmet = require('helmet');
+const cors = require('cors');
 const mongoose = require('mongoose');
 const morgan = require('morgan');
 const errors = require('./api/middlewares/errors');
@@ -13,7 +14,7 @@ const {
   PORT
 } = require('./config');
 
-const port = parseInt(PORT, 10) || 3000;
+const port = parseInt(PORT, 10) || 8080;
 const dev = NODE_ENV !== 'production';
 
 mongoose
@@ -29,6 +30,7 @@ mongoose
 
 const app = express();
 
+app.use(cors());
 app.use(helmet());
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({ extended: true }));

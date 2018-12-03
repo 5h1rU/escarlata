@@ -5,9 +5,21 @@ const { Schema } = mongoose;
 
 const EventSchema = new Schema(
   {
+    name: {
+      type: String,
+      required: true
+    },
+    date: {
+      type: Date,
+      required: true
+    },
     venue: {
       type: Schema.Types.ObjectId,
       ref: 'Venue',
+      required: true
+    },
+    description: {
+      type: String,
       required: true
     }
   },

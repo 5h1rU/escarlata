@@ -11,7 +11,7 @@ const CartService = {
     return cart.save();
   },
   read: data => CartModel.findOne(data).populate('products.product'),
-  delete: id => CartModel.findByIdAndDelete(id),
+  delete: data => CartModel.findOneAndRemove(data),
   removeProduct: (userId, payload) => {
     return CartModel.findOneAndUpdate(
       { user: userId },

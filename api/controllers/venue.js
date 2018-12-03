@@ -25,8 +25,8 @@ const Venue = {
   }),
   readAll: asyncUtil(async (req, res, next) => {
     // TODO: use parameters for handle page and limit
-    const venues = await VenueService.readAll({ page: 1, limit: 10 });
-    res.status(200).json({ success: true, venues });
+    const venue = await VenueService.readAll({ page: 1, limit: 10 });
+    res.status(200).json({ success: true, venue });
   }),
   update: asyncUtil(async (req, res, next) => {
     const payload = req.body;
