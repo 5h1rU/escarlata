@@ -25,8 +25,8 @@ const Product = {
   }),
   readAll: asyncUtil(async (req, res, next) => {
     // TODO: use parameters for handle page and limit
-    const products = await ProductService.readAll({ page: 1, limit: 10 });
-    res.status(200).json({ success: true, products });
+    const product = await ProductService.readAll({ page: 1, limit: 10 });
+    res.status(200).json({ success: true, product });
   }),
   update: asyncUtil(async (req, res, next) => {
     const payload = req.body;
