@@ -49,7 +49,7 @@
     "nodemon": "1.18.3",
     "prettier": "1.14.2",
     "sinon": "6.1.5",
-    "sinon-mongoose": "2.2.1"
+    "sinon-mongoose": "2.3.0"
   },
   "config": {
     "commitizen": {
