@@ -47,7 +47,7 @@
     "eslint-plugin-prettier": "2.6.2",
     "mocha": "5.2.0",
     "nodemon": "1.18.3",
-    "prettier": "1.14.2",
+    "prettier": "1.19.1",
     "sinon": "6.1.5",
     "sinon-mongoose": "2.2.1"
   },
