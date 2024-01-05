@@ -37,7 +37,7 @@
     "morgan": "^1.9.0"
   },
   "devDependencies": {
-    "chai": "4.1.2",
+    "chai": "4.4.0",
     "chai-as-promised": "7.1.1",
     "chai-http": "4.0.0",
     "cz-conventional-changelog": "2.1.0",
